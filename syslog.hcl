@@ -13,7 +13,8 @@ job "nomad-syslog-test" {
     task "syslog" {
       driver = "docker"
       env {
-        LOG_ITEMS = 100
+        LOG_ITEMS   = 2000
+        LOG_THREADS = 4
       }
       config {
         labels {

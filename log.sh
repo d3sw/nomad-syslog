@@ -14,7 +14,7 @@ prt_str(){
 	thread=$2
 	idx=$3
 	str=$(rand_str)
-	echo "group=$ts, thread=$thread, index=$idx, $str"
+	echo "ts=$ts, thread=$thread, item=$idx, $str"
 }
 
 run() {
@@ -32,13 +32,13 @@ main(){
 	items=$LOG_ITEMS
 	threads=$LOG_THREADS
 	count=$items/$threads
-	echo "ts=$ts, items=$num, threads=$thread, start"
+	echo "ts=$ts, threads=$threads, items=$items, start"
 	for ((thread=0;thread<$threads;thread++)); do
 		start=$thread*$count
 		end=($thread+1)*$count
 		run $ts $thread $start $end &
 	done
-	echo "ts=$ts, items=$num, threads=$thread, stop"
+	echo "ts=$ts, threads=$thread, items=$num, stop"
 	sleep infinity
 }
 
