@@ -17,7 +17,7 @@ prt_str(){
 	echo "ts=$ts, thread=$thread, item=$idx, $str"
 }
 
-run() {
+runThread() {
 	ts=$1
 	thread=$2
 	start=$3
@@ -27,7 +27,7 @@ run() {
 	done
 }
 
-main(){
+runOnce(){
 	ts=$(date +%s)
 	items=$LOG_ITEMS
 	threads=$LOG_THREADS
@@ -36,12 +36,15 @@ main(){
 	for ((thread=0;thread<$threads;thread++)); do
 		start=$thread*$count
 		end=($thread+1)*$count
-		run $ts $thread $start $end &
+		runThread $ts $thread $start $end &
 	done
 	echo "ts=$ts, threads=$thread, items=$num, stop"
+}
+
+main(){
 	for ((i=0;i<10000000;i++)); do
-		sleep 60
-		echo "$ts is still alive.."
+		runOnce
+		sleep 600
 	done
 }
 
