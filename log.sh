@@ -44,7 +44,7 @@ runOnce(){
 main(){
 	for ((i=0;i<10000000;i++)); do
 		runOnce
-		sleep 300
+		sleep 180
 	done
 }
 
