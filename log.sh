@@ -20,7 +20,7 @@ main(){
 	num=$LOG_ITEMS
 	echo "testing log $num items"
 	for ((i=0;i<$num;i++)); do 
-		prt_str $ts $i &
+		prt_str $ts $i
 	done
 	sleep infinity
 }
