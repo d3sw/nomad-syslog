@@ -19,11 +19,11 @@ prt_str(){
 main(){
 	ts=$(date +%s)
 	num=$LOG_ITEMS
-	echo "log $num items start"
+	echo "group=$ts, num=$num, start"
 	for ((i=0;i<$num;i++)); do 
 		prt_str $ts $i
 	done
-	echo "log $num items stop"
+	echo "group=$ts, num=$num, stop"
 	sleep infinity
 }
 
