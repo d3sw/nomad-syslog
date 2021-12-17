@@ -13,18 +13,19 @@ job "nomad-syslog-test" {
     task "syslog" {
       driver = "docker"
       env {
-        LOG_ITEMS   = 2000
-        LOG_THREADS = 4
+        LOG_ITEMS    = 2000
+        LOG_THREADS  = 4
+        LOG_INTERVAL = "3m"
       }
       config {
         labels {
-          service   = "${NOMAD_JOB_NAME}"
-          component = "${NOMAD_TASK_NAME}"
+          service   = "nomad-syslog-test"
+          component = "nomad-syslog-test"
         }
         # image = "redis"
         # args  = ["bash", "-c", "apt -y update && apt -y install curl && curl -s 'https://raw.githubusercontent.com/ys-zhao/nomad-syslog/main/log.sh' | bash"]
         image = "golang"
-        args  = ["bash", "-c", "apt -y update && apt -y install curl && curl -s 'https://raw.githubusercontent.com/ys-zhao/nomad-syslog/main/go/main.go' && go mod init && go mod tidy && go run main.go"]
+        args  = ["bash", "-c", "mkdir /app && cd /app && wget 'https://raw.githubusercontent.com/ys-zhao/nomad-syslog/main/go/main.go' && wget 'https://raw.githubusercontent.com/ys-zhao/nomad-syslog/main/go/go.mod' && wget 'https://raw.githubusercontent.com/ys-zhao/nomad-syslog/main/go/go.sum' && go run main.go"]
         logging {
           type = "syslog"
           config {
