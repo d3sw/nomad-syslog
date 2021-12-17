@@ -47,6 +47,8 @@ func runThread(tag, thread, start, end int) {
 }
 
 func runOnce() {
+	atomic.StoreInt32(&_seqNum, 0)
+
 	tag := int(time.Now().Unix())
 	threads := getenvInt("LOG_THREADS", 10)
 	count := getenvInt("LOG_COUNT", 100)
