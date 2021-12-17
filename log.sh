@@ -13,11 +13,13 @@ prt_str(){
 	ts=$1
 	idx=$2
 	str=$(rand_str)
-	echo "log_$ts[$idx/$_sum]: $str"
+	echo "logID=$ts log[$idx/$_sum] $str"
 }
 main(){
 	ts=$(date +%s)
-	for ((i=0;i<5000;i++)); do 
+	num=$LOG_ITEMS
+	echo "testing log $num items"
+	for ((i=0;i<$num;i++)); do 
 		prt_str $ts $i &
 	done
 	sleep infinity
