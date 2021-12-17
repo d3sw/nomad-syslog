@@ -11,19 +11,34 @@ rand_str(){
 
 prt_str(){
 	ts=$1
-	idx=$2
+	thread=$2
+	idx=$3
 	str=$(rand_str)
-	echo "group=$ts, item=$idx, $str"
+	echo "group=$ts, thread=$thread, index=$idx, $str"
+}
+
+run() {
+	ts=$1
+	thread=$2
+	start=$3
+	end=$4
+	for ((idx=$start;idx<$end;idx++)); do 
+		prt_str $ts $thread $idx
+	done
 }
 
 main(){
 	ts=$(date +%s)
-	num=$LOG_ITEMS
-	echo "group=$ts, num=$num, start"
-	for ((i=0;i<$num;i++)); do 
-		prt_str $ts $i
+	items=$LOG_ITEMS
+	threads=$LOG_THREADS
+	count=$items/$threads
+	echo "ts=$ts, items=$num, threads=$thread, start"
+	for ((thread=0;thread<$threads;thread++)); do
+		start=$thread*$count
+		end=($thread+1)*$count
+		run $ts $thread $start $end &
 	done
-	echo "group=$ts, num=$num, stop"
+	echo "ts=$ts, items=$num, threads=$thread, stop"
 	sleep infinity
 }
 
