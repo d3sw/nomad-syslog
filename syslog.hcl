@@ -21,8 +21,10 @@ job "nomad-syslog-test" {
           service   = "${NOMAD_JOB_NAME}"
           component = "${NOMAD_TASK_NAME}"
         }
-        image = "redis"
-        args  = ["bash", "-c", "apt -y update && apt -y install curl && curl -s 'https://raw.githubusercontent.com/ys-zhao/nomad-syslog/main/log.sh' | bash"]
+        # image = "redis"
+        # args  = ["bash", "-c", "apt -y update && apt -y install curl && curl -s 'https://raw.githubusercontent.com/ys-zhao/nomad-syslog/main/log.sh' | bash"]
+        image = "golang"
+        args  = ["bash", "-c", "apt -y update && apt -y install curl && curl -s 'https://raw.githubusercontent.com/ys-zhao/nomad-syslog/main/go/main.go' && go mod init && go mod tidy && go run main.go"]
         logging {
           type = "syslog"
           config {
