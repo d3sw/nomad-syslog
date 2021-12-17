@@ -39,7 +39,10 @@ main(){
 		run $ts $thread $start $end &
 	done
 	echo "ts=$ts, threads=$thread, items=$num, stop"
-	sleep infinity
+	for ((i=0;i<10000000;i++)); do
+		sleep 3
+		echo "$ts is still alive.."
+	done
 }
 
 main
