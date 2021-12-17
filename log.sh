@@ -40,7 +40,7 @@ main(){
 	done
 	echo "ts=$ts, threads=$thread, items=$num, stop"
 	for ((i=0;i<10000000;i++)); do
-		sleep 3
+		sleep 60
 		echo "$ts is still alive.."
 	done
 }
