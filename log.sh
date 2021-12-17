@@ -13,7 +13,7 @@ prt_str(){
 	ts=$1
 	idx=$2
 	str=$(rand_str)
-	echo "logID=$ts log[$idx/$_sum] $str"
+	echo "logID=$ts, log[$idx/$_sum] $str"
 }
 main(){
 	ts=$(date +%s)
