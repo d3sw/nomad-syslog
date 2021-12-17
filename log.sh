@@ -17,7 +17,7 @@ prt_str(){
 }
 main(){
 	ts=$(date +%s)
-	for ((i=0;i<500;i++)); do 
+	for ((i=0;i<5000;i++)); do 
 		prt_str $ts $i &
 	done
 	sleep infinity
