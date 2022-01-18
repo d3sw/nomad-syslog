@@ -13,9 +13,10 @@ job "nomad-syslog-test" {
     task "syslog" {
       driver = "docker"
       env {
-        LOG_ITEMS    = 2000
+        LOG_COUNT    = 2000
         LOG_THREADS  = 4
-        LOG_INTERVAL = "3m"
+        LOG_SIZE     = 1024
+        LOG_INTERVAL = "5m"
       }
       config {
         labels {
